@@ -90,7 +90,7 @@ pip install transformers sentencepiece
 ```
 Then run the code:
 ```
- python ./Script/text2motion_generation.py
+python ./Script/text2motion_generation.py
 ```
 
 text description can be found in the python script

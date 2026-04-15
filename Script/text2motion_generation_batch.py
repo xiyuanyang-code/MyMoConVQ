@@ -110,7 +110,6 @@ if __name__ == '__main__':
     bert = T5EncoderModel.from_pretrained('t5-large', resume_download=True).to(ptu.device)
     bert.eval()
     
-    # todo
     agent.simple_load(r'moconvq_base.data', strict=True)
     agent.eval()
     
@@ -118,6 +117,7 @@ if __name__ == '__main__':
     trainer.gpt.load_state_dict(torch.load('text_generation_GPT.pth', map_location=ptu.device))
     trainer.gpt = trainer.gpt.eval()
     
+    # todo 我希望你这里添加 一个 batch 功能
     text = 'A person walking while talking on the phone.'
     
     bert_feature, bert_mask = text2bert(text)
