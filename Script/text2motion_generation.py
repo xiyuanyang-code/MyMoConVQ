@@ -110,7 +110,6 @@ if __name__ == '__main__':
     bert = T5EncoderModel.from_pretrained('t5-large', resume_download=True).to(ptu.device)
     bert.eval()
     
-    # todo
     agent.simple_load(r'moconvq_base.data', strict=True)
     agent.eval()
     
@@ -118,7 +117,10 @@ if __name__ == '__main__':
     trainer.gpt.load_state_dict(torch.load('text_generation_GPT.pth', map_location=ptu.device))
     trainer.gpt = trainer.gpt.eval()
     
-    text = 'A person walking while talking on the phone.'
+    # text = 'A person walking while talking on the phone.'
+    # text = 'The character begins standing completely still with arms resting at their sides, then takes three measured steps forward before abruptly freezing in place. After holding a static pose, they suddenly whip their head to the right, pivot their torso, and take a single cautious step backward. They immediately lower into a deep squat, push off to execute a smooth forward roll across the ground, and fluidly spring back to an upright stance. Without pause, they transition into a short sprint of four quick strides, launch into a high vertical jump with arms extended overhead, and land with deeply bent knees to absorb the impact. Finally, they straighten their posture, shake out their hands, settle into a slow walking gait for several steps, and gradually come to a complete stop.'
+    # text = 'A person doing a forward roll.'
+    text = "Take three steps forward, do a forward roll, then take three steps backward, and jump twice"
     
     bert_feature, bert_mask = text2bert(text)
     trainer.evaluate_generate(text, 0, 'out/conditional', agent_=agent, env_=env, clip_feature=None, bert_feature=bert_feature, bert_mask=bert_mask)
