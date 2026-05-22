@@ -130,3 +130,18 @@ Demo 3: tokens --> Decoder --> BVH                      (moconvq_base.data)
 Demo 4: seed --> GPT --> tokens --> Decoder --> BVH      (+ unconditional_GPT.pth)
 Demo 5: text --> T5+GPT --> tokens --> Decoder --> BVH   (+ text_generation_GPT.pth + T5)
 ```
+
+## Issac Sim Quick Demo
+
+```bash
+conda create -p /data/conda/miniconda/envs/issaclab python==3.11
+conda activate /data/conda/miniconda/envs/issaclab
+pip install torch==2.7.0 torchvision==0.22.0 --index-url https://download.pytorch.org/whl/cu128
+pip install "isaacsim[all,extscache]==5.0.0" --extra-index-url https://pypi.nvidia.com
+# 切换到lab2.2/2.3分支手动下载
+cd Isaaclab
+./isaaclab.sh --install # or "./isaaclab.sh -i"（可以只装自己想要的库）
+# 验证是否安装成功
+python scripts/reinforcement_learning/skrl/train.py --task=Isaac-Ant-v0
+
+```
